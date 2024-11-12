@@ -1,6 +1,8 @@
 services:
   nginx:
-    image: nginx-image
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
     container_name: nginx_server
     ports:
       - "8080:8080"
@@ -14,7 +16,9 @@ services:
       retries: 3
 
   tester:
-    image: tester-image
+    build:
+      context: .
+      dockerfile: Dockerfile.python
     container_name: nginx_tester
     depends_on:
       nginx:
